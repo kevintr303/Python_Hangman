@@ -25,7 +25,6 @@ def generate_random_word():
 def start_game():
     already_guessed = []
     random_word = generate_random_word()
-    random_word = "black"
     guesses = ""
     while not guesses.isdigit():
         guesses = input("Input difficulty (number of lives): ")
