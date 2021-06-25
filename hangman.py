@@ -17,6 +17,7 @@ def generate_random_word():
         return random_word
     else:
         import requests
+
         r = requests.get("https://random-word-api.herokuapp.com/word?number=1")
         random_word = r.text
         return random_word
@@ -41,7 +42,9 @@ def start_game():
             continue
         already_guessed.append(guess)
         if guess in random_word:
-            indices = [index for index, element in enumerate(random_word) if element == guess]
+            indices = [
+                index for index, element in enumerate(random_word) if element == guess
+            ]
             for index in indices:
                 hidden[index] = guess
         else:
@@ -54,10 +57,10 @@ def start_game():
         if hidden.count("_") == 0:
             break
     if guesses == 0:
-        print('You lost. The word was:', "".join(random_word))
+        print("You lost. The word was:", "".join(random_word))
         return
     else:
-        print('You got it! Congratulations!')
+        print("You got it! Congratulations!")
         return
 
 
@@ -66,12 +69,13 @@ if __name__ == "__main__":
     while True:
         start_game()
         play_again = None
-        while play_again not in ['yes', 'y', 'no', 'n']:
+        while play_again not in ["yes", "y", "no", "n"]:
             play_again = input("Do you want to play again? [yes/no]\n").lower()
-            if play_again in ['yes', 'y']:
+            if play_again in ["yes", "y"]:
                 continue
             else:
                 print("Goodbye.")
                 import sys
+
                 sys.exit()
         continue
